@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+    <com.wangyl.learnview.views.EventGroup1
+        android:layout_width="300dp"
+        android:layout_height="300dp"
+        android:id="@+id/group1"
+        android:background="@color/red"
+        >
+        <com.wangyl.learnview.views.EventGroup2
+            android:layout_width="200dp"
+            android:layout_height="200dp"
+            android:id="@+id/group2"
+            android:layout_gravity="center"
+            android:background="@color/green"
+            >
+            <com.wangyl.learnview.views.EventTextView
+                android:id="@+id/event_tv"
+                android:text="测试点我"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:textColor="@color/white"
+                android:background="@color/blue"
+                />
+        </com.wangyl.learnview.views.EventGroup2>
+    </com.wangyl.learnview.views.EventGroup1>
+
+
+
+
+</FrameLayout>

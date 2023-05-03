@@ -1,0 +1,10 @@
+<resources>
+    <dimen name="app_bar_height">180dp</dimen>
+    <dimen name="fab_margin">16dp</dimen>
+    <dimen name="text_margin">16dp</dimen>
+
+    <dimen name="spacing2">2dp</dimen>
+    <dimen name="spacing1">1dp</dimen>
+    <dimen name="radius">50dp</dimen>
+    <dimen name="circle_offset">2dp</dimen>
+</resources>

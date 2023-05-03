@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="purple_200">#FFBB86FC</color>
+    <color name="purple_500">#FF6200EE</color>
+    <color name="purple_700">#FF3700B3</color>
+    <color name="teal_200">#FF03DAC5</color>
+    <color name="teal_700">#FF018786</color>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+    <color name="red">#FFFF0000</color>
+    <color name="blue">#FF0000FF</color>
+    <color name="green">#FF00FF00</color>
+    <color name="gray">#6A6C6A</color>
+
+    <color name="busuu_blue">#116EEE</color>
+    <color name="busuu_blue_lite">#5398F8</color>
+    <color name="busuu_blue_xlite">#B6E4FF</color>
+    <color name="busuu_blue_lite_highlight">#E3EFFF</color>
+
+    <color name="blue_layer1_primary">#0b479b</color>
+    <color name="blue_layer2_primary">#4d92f2</color>
+    <color name="blue_layer3_primary">#c3dbfb</color>
+
+    <color name="blue_layer1_secondary">#0e5eca</color>
+    <color name="blue_layer2_secondary">#88b7f7</color>
+    <color name="blue_layer3_secondary">#E1EEFF</color>
+</resources>
