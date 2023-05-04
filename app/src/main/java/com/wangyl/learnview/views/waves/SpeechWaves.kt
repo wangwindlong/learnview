@@ -139,7 +139,6 @@ class SpeechWaves @JvmOverloads constructor(
 
     fun start() {
 //        if (!checkPermission()) return
-        Log.d("test", "start")
         audioMeter.start(this)
         colorsList = colorsAnimator.layerColors.toMutableList()
         startWaveRadiusAnimation()
@@ -210,8 +209,6 @@ class SpeechWaves @JvmOverloads constructor(
 
     override fun onDraw(canvas: Canvas) {
         super.onDraw(canvas)
-
-
         for (layerN in LAYERS_COUNT downTo 1) {
             canvas.save()
             tempRadius = radius

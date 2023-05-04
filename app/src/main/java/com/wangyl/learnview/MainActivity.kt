@@ -32,20 +32,17 @@ class MainActivity : AppCompatActivity() {
         if (savedInstanceState == null) {
             Utils.showFragment(this, MainFragment::class.java.name)
         }
-//        val view: View = window.decorView
-//        val paint = Paint()
-//        val cm = ColorMatrix()
-//        cm.setSaturation(0f)
-//        paint.colorFilter = ColorMatrixColorFilter(cm)
-//        view.setLayerType(View.LAYER_TYPE_HARDWARE, paint)
 
         binding.fab.setOnClickListener {
-            AlertDialog.Builder(this).setMessage("切换风格").setNegativeButton("确定") { dialog, which ->
-                grayFrameLayout?.updateTheme()
-                recreate()
-                dialog.dismiss()
-            }.create().show()
+//            AlertDialog.Builder(this).setMessage("切换风格").setNegativeButton("确定") { dialog, which ->
+//                grayFrameLayout?.updateTheme()
+//                recreate()
+//                dialog.dismiss()
+//            }.create().show()
+            binding.fab.animate().rotationYBy(360f).setDuration(270).start()
         }
+
+
     }
 
     override fun onCreateView(name: String, context: Context, attrs: AttributeSet): View? {

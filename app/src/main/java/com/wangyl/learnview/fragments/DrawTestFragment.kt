@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.wangyl.learnview.databinding.FragmentDrawTextBinding
+import com.wangyl.learnview.drawables.LoadingDrawable
 
 class DrawTestFragment:Fragment() {
 
@@ -25,6 +26,9 @@ class DrawTestFragment:Fragment() {
         binding.speechWaves.setOnClickListener {
             binding.speechWaves.start()
             Toast.makeText(context, "点击了按钮", Toast.LENGTH_LONG).show()
+        }
+        binding.testView.background = LoadingDrawable().apply {
+            setBounds(binding.testView.left, binding.testView.top, binding.testView.right, binding.testView.bottom)
         }
         return binding.root
     }
