@@ -11,7 +11,7 @@ import android.widget.FrameLayout
 class GrayFrameLayout @JvmOverloads constructor(
     context: Context, attrs: AttributeSet? = null
 ) : FrameLayout(context, attrs) {
-    private var isGray = false
+    private var gray = true
     var mPaint = Paint()
     var mOriginPaint = Paint()
 
@@ -25,24 +25,24 @@ class GrayFrameLayout @JvmOverloads constructor(
     }
 
     override fun dispatchDraw(canvas: Canvas) {
-        canvas.saveLayer(null, if (isGray) mPaint else mOriginPaint)
+        val saved = canvas.saveLayer(null, if (gray) mPaint else mOriginPaint)
         super.dispatchDraw(canvas)
-        canvas.restore()
+        canvas.restoreToCount(saved)
     }
 
     override fun onDraw(canvas: Canvas) {
-        canvas.saveLayer(null, if (isGray) mPaint else mOriginPaint)
+        val saved = canvas.saveLayer(null, if (gray) mPaint else mOriginPaint)
         super.onDraw(canvas)
-        canvas.restore()
+        canvas.restoreToCount(saved)
     }
 
     fun setGray(isGray: Boolean) {
-        this.isGray = isGray
+        this.gray = isGray
         invalidate()
     }
 
     fun updateTheme() {
-        isGray = !isGray
+        gray = !gray
         invalidate()
     }
 }

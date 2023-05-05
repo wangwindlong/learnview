@@ -1,11 +1,9 @@
 package com.wangyl.learnview
 
 import android.content.Context
-import android.graphics.ColorMatrix
-import android.graphics.ColorMatrixColorFilter
-import android.graphics.Paint
 import android.os.Bundle
 import android.util.AttributeSet
+import android.util.Log
 import android.view.View
 import android.view.WindowManager
 import androidx.appcompat.app.AlertDialog
@@ -18,6 +16,7 @@ class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
     private var grayFrameLayout: GrayFrameLayout? = null
+    private var mIsGray = true
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -34,11 +33,11 @@ class MainActivity : AppCompatActivity() {
         }
 
         binding.fab.setOnClickListener {
-//            AlertDialog.Builder(this).setMessage("切换风格").setNegativeButton("确定") { dialog, which ->
-//                grayFrameLayout?.updateTheme()
-//                recreate()
-//                dialog.dismiss()
-//            }.create().show()
+            AlertDialog.Builder(this).setMessage("切换风格").setNegativeButton("确定") { dialog, which ->
+                mIsGray = !mIsGray
+                recreate()
+                dialog.dismiss()
+            }.create().show()
             binding.fab.animate().rotationYBy(360f).setDuration(270).start()
         }
 
@@ -46,6 +45,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     override fun onCreateView(name: String, context: Context, attrs: AttributeSet): View? {
+        Log.d("test", "onCreateView")
         try {
             if ("FrameLayout" == name) {
                 val count: Int = attrs.attributeCount
@@ -56,7 +56,10 @@ class MainActivity : AppCompatActivity() {
                         val id = attributeValue.substring(1).toInt()
                         val idVal = resources.getResourceName(id)
                         if ("android:id/content" == idVal) {
-                            return GrayFrameLayout(context, attrs).apply { grayFrameLayout = this }
+                            return GrayFrameLayout(context, attrs).apply {
+                                grayFrameLayout = this
+                                setGray(mIsGray)
+                            }
                         }
                     }
                 }
