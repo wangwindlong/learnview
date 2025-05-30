@@ -4,4 +4,11 @@
     <declare-styleable name="CustomDrawView">
         <attr format="reference" name="android:background"/>
     </declare-styleable>
+
+    <declare-styleable name="RecordButton">
+        <attr name="rippleColor" format="color" />
+        <attr name="rippleSpeed" format="float" />
+        <attr name="rippleWidth" format="dimension" />
+        <attr name="rippleDistance" format="dimension" />
+    </declare-styleable>
 </resources>

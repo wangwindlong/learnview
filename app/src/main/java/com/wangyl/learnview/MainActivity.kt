@@ -46,27 +46,27 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreateView(name: String, context: Context, attrs: AttributeSet): View? {
         Log.d("test", "onCreateView")
-        try {
-            if ("FrameLayout" == name) {
-                val count: Int = attrs.attributeCount
-                for (i in 0 until count) {
-                    val attributeName: String = attrs.getAttributeName(i)
-                    val attributeValue: String = attrs.getAttributeValue(i)
-                    if (attributeName == "id") {
-                        val id = attributeValue.substring(1).toInt()
-                        val idVal = resources.getResourceName(id)
-                        if ("android:id/content" == idVal) {
-                            return GrayFrameLayout(context, attrs).apply {
-                                grayFrameLayout = this
-                                setGray(mIsGray)
-                            }
-                        }
-                    }
-                }
-            }
-        } catch (e: Exception) {
-            e.printStackTrace()
-        }
+//        try {
+//            if ("FrameLayout" == name) {
+//                val count: Int = attrs.attributeCount
+//                for (i in 0 until count) {
+//                    val attributeName: String = attrs.getAttributeName(i)
+//                    val attributeValue: String = attrs.getAttributeValue(i)
+//                    if (attributeName == "id") {
+//                        val id = attributeValue.substring(1).toInt()
+//                        val idVal = resources.getResourceName(id)
+//                        if ("android:id/content" == idVal) {
+//                            return GrayFrameLayout(context, attrs).apply {
+//                                grayFrameLayout = this
+//                                setGray(mIsGray)
+//                            }
+//                        }
+//                    }
+//                }
+//            }
+//        } catch (e: Exception) {
+//            e.printStackTrace()
+//        }
         return super.onCreateView(name, context, attrs)
     }
 

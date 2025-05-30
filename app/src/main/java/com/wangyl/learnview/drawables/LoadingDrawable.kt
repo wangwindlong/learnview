@@ -15,6 +15,7 @@ import android.graphics.drawable.Animatable
 import android.graphics.drawable.Drawable
 import android.util.Log
 import android.util.Property
+import kotlin.math.roundToInt
 
 
 class LoadingDrawable : Drawable(), Animatable {
@@ -22,10 +23,11 @@ class LoadingDrawable : Drawable(), Animatable {
     var mCenterX = 0f
     var mCenterY = 0f
     var mRadius = 100f
+    val mAlphaList = mutableListOf(0.5f, 0.3f, 0.1f)
     private var mValueAnimator: ValueAnimator? = null
     private val mCirClePaint = Paint().apply {
-        style = Paint.Style.STROKE
-        color = Color.parseColor("#B3BBD5")
+        style = Paint.Style.FILL
+        color = Color.parseColor("#88b7f7")
         strokeWidth = 10f
     }
     private val mArcPaint = Paint().apply {
@@ -61,10 +63,10 @@ class LoadingDrawable : Drawable(), Animatable {
         // 控制扩散半径的属性变化
         val radiusHolder = PropertyValuesHolder.ofFloat(mRadiusProperty, 0f, mRadius)
         // 控制透明度的属性变化
-        val alphaHolder = PropertyValuesHolder.ofInt("alpha", 255, 0);
+        val alphaHolder = PropertyValuesHolder.ofInt("circleAlpha", 255, 0)
         mValueAnimator = ObjectAnimator.ofPropertyValuesHolder(this, radiusHolder, alphaHolder)
-        mValueAnimator?.setStartDelay(1000)
-        mValueAnimator?.setDuration(1200)
+//        mValueAnimator?.setStartDelay(1000)
+        mValueAnimator?.setDuration(2000)
         mValueAnimator?.addUpdateListener {invalidateSelf() }
         mValueAnimator?.setRepeatMode(ValueAnimator.RESTART)
         mValueAnimator?.setRepeatCount(ValueAnimator.INFINITE)
@@ -75,14 +77,54 @@ class LoadingDrawable : Drawable(), Animatable {
         canvas.drawColor(Color.parseColor("#FF0000"))
 //        canvas.rotate(mAngel, mCenterX, mCenterY)
         Log.d("LoadingDrawable", "draw mCenterX=$mCenterX mCenterY=$mCenterY mRadius=$mRadius")
+//        mCirClePaint.alpha = cacAlpha(2)
+        canvas.drawCircle(mCenterX, mCenterY, cacRadius(2) , mCirClePaint)
+//        mCirClePaint.alpha = cacAlpha(1)
+        canvas.drawCircle(mCenterX, mCenterY, cacRadius(1) , mCirClePaint)
+//        mCirClePaint.alpha = cacAlpha(0)
         canvas.drawCircle(mCenterX, mCenterY, mRadius, mCirClePaint)
 //        canvas.drawArc(mRect, 0f, 20f, false, mArcPaint)
+    }
+
+    private fun cacRadius(stage: Int): Float {
+        val res = mRadius - stage * 25f
+        if (res < 0) return 0f
+        return res
+    }
+    private fun cacAlpha(stage: Int): Int {
+        return (mAlphaList[stage] * 255).toInt()
     }
 
     override fun setAlpha(alpha: Int) {
         mCirClePaint.alpha = alpha
         mArcPaint.alpha = alpha
         invalidateSelf()
+    }
+
+    private fun setCircleAlpha(alpha: Int) {
+        mCirClePaint.alpha = (mAlphaList[getSegmentIndex(255, 0, 3, alpha)] * 255).toInt()
+        invalidateSelf()
+    }
+
+    fun getSegmentIndex(
+        startValue: Int,
+        endValue: Int,
+        numSegments: Int,
+        currentValue: Int
+    ): Int {
+        if (numSegments <= 0) {
+            return 0 // Or throw an exception
+        } else if (numSegments == 1) {
+            return 1
+        }
+
+        val segmentSize = (startValue - endValue).toDouble() / numSegments
+
+        // Calculate the segment index
+        val segmentIndex = ((startValue - currentValue) / segmentSize).roundToInt()
+
+        // Ensure the index is within the valid range
+        return segmentIndex.coerceIn(0, numSegments - 1)
     }
 
     override fun setColorFilter(colorFilter: ColorFilter?) {

@@ -21,6 +21,7 @@ class DrawTestFragment:Fragment() {
         binding = FragmentDrawTextBinding.inflate(inflater, null, false)
         binding.customView.setOnClickListener {
             Toast.makeText(context, "点击了图片", Toast.LENGTH_LONG).show()
+            binding.waterView.speedUp(2)
         }
         binding.speechWaves.start()
         binding.speechWaves.setOnClickListener {
@@ -29,6 +30,13 @@ class DrawTestFragment:Fragment() {
         }
         binding.testView.background = LoadingDrawable().apply {
             setBounds(binding.testView.left, binding.testView.top, binding.testView.right, binding.testView.bottom)
+        }
+        binding.waterView.setOnClickListener {
+//            binding.waterView.toggleAnimateEnabled()
+            binding.waterView.toggleSmallState()
+//            binding.waterView.setSpeedDelay(120)
+//            binding.waterView.setAnimateEnabled(false)
+//            binding.waterView.speedUp(2)
         }
         return binding.root
     }
